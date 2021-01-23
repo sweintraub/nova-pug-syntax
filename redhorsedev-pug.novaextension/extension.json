@@ -1,8 +1,8 @@
 {
-	"identifier": "redhorsedev.pug",
-	"name": "pug",
-	"organization": "redhorsedev",
-	"description": "Syntax highlighting for pug templates",
-	"version": "1.0",
-	"categories": ["languages"]
+    "identifier": "org.redhorsedev",
+    "name": "redhorsedev-pug",
+    "organization": "MyOrganization",
+    "description": "Lorem ipsum, dolor sit amet.",
+    "version": "1.0",
+    "categories": ["languages"]
 }
