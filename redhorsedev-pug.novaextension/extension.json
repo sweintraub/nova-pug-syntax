@@ -1,8 +1,9 @@
 {
     "identifier": "org.redhorsedev",
     "name": "redhorsedev-pug",
-    "organization": "MyOrganization",
-    "description": "Lorem ipsum, dolor sit amet.",
+    "organization": "RedhorseDev",
+    "description": "Syntax for pug",
     "version": "1.0",
-    "categories": ["languages"]
+    "categories": ["languages"],
+    "bugs": "https://github.com/sweintraub/nova-pug-syntax"
 }
