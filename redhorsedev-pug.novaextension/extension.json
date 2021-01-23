@@ -3,7 +3,7 @@
     "name": "Pug",
     "organization": "RedhorseDev",
     "description": "Syntax highlighting for the Pug templating engine.",
-    "version": "1.1",
+    "version": "1.2",
     "categories": ["languages"],
     "bugs": "https://github.com/sweintraub/nova-pug-syntax"
 }
