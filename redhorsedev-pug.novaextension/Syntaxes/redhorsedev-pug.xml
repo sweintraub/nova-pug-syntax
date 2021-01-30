@@ -80,7 +80,7 @@
 		</scope>
 		
 		<scope name="pug.element">
-			<expression>^\s*(append|block|case|each|extends|for|if|include|when)</expression>
+			<expression>^\s*(append|block|case|each|extends|for|if|else|include|each|until|while|unless|when|block|append|prepend)</expression>
 			<capture number="1" name="pug.element.tag.framework" />
 		</scope>
 
@@ -99,6 +99,11 @@
 
 		<scope name="pug.value.entity">
 			<expression>(&amp;)([a-zA-Z0-9]+|\#[0-9]+|\#x[0-9a-fA-F]+)(;)</expression>
+		</scope>
+
+		<scope name="pug.filters">
+			<expression>(:sass|:less|:js)</expression>
+			<capture number="1" name="pug.identifier.function" />
 		</scope>
 	
 		<!-- classes and IDs -->
@@ -145,4 +150,18 @@
 		</collection>
 		
 	</collections>
+	
+	<indentation>
+		<increase>
+				<expression>^\s*(([\w\#.-]+(\(.*?\))?(:\s*[\w\#.-]+(\(.*?\))?)*\.?$)|(:[a-z]\w*($|\())|(\/\/-?$)|(-\s+(if|else|while)(\s+|$))|((for|if|else if|else|each|until|while|unless|case|when|block|append|prepend)(\s+|$)))</expression>
+		</increase>
+		<decrease>
+				<expression>^\s*(- )?(else)\b.*$</expression>
+		</decrease>
+	</indentation>
+		
 </syntax>
+
+
+<!-- ^\\s*(([\\w#.-]+(\\(.*?\\))?(:\\s*[\\w#.-]+(\\(.*?\\))?)*\\.?$)|(:[a-z]\\w*($|\\())|(\\/\\/-?$)|(-\\s+(if|else|while)(\\s+|$))|((for|if|else if|else|each|until|while|unless|case|when|block|append|prepend)(\\s+|$))) -->
+
