@@ -75,13 +75,30 @@
 		
 		<!-- Tags -->
 		<scope name="pug.html">
-				<expression>^\s*(a|abbr|acronym|address|area|article|aside|audio|b|base|big|blockquote|body|br|button|canvas|caption|cite|code|col|colgroup|const|datalist|dd|del|details|dfn|dialog|div|dl|doctype|dt|em|eventsource|fieldset|figure|figcaption|footer|form|frame|frameset|(h[1-6])|head|header|hgroup|hr|html|i|iframe|img|input|ins|kbd|label|legend|let|li|link|map|mark|menu|meta|meter|nav|noframes|noscript|object|ol|optgroup|option|output|p|param|pre|progress|q|samp|script|section|select|small|span|strike|strong|style|sub|summary|sup|table|tbody|td|textarea|tfoot|th|thead|time|title|tr|tt|ul|var|video)\b</expression>
+				<expression>^\s*(a|abbr|acronym|address|area|article|aside|audio|b|base|big|blockquote|body|br|button|canvas|caption|cite|code|col|colgroup|const|datalist|dd|del|details|dfn|dialog|div|dl|dt|em|eventsource|fieldset|figure|figcaption|footer|form|frame|frameset|(h[1-6])|head|header|hgroup|hr|html|i|iframe|img|input|ins|kbd|label|legend|let|li|link|map|mark|menu|meta|meter|nav|noframes|noscript|object|ol|optgroup|option|output|p|param|pre|progress|q|samp|script|section|select|small|span|strike|strong|style|sub|summary|sup|table|tbody|td|textarea|tfoot|th|thead|time|title|tr|tt|ul|var|video)\b</expression>
 				<capture number="1" name="pug.html.tag" />
 		</scope>
 		
 		<scope name="pug.element">
-			<expression>^\s*(append|block|case|each|extends|for|if|include|\+*mixin+|when)</expression>
+			<expression>^\s*(append|block|case|each|extends|for|if|include|when)</expression>
 			<capture number="1" name="pug.element.tag.framework" />
+		</scope>
+
+		<scope name="pug.mixin">
+			<expression>((?:mixin\s+)|\+)([\w-]+)</expression>
+			<capture number="1" name="pug.element.tag.framework" />
+			<capture number="2" name="pug.identifier.function" />
+		</scope>
+	
+		<scope name="pug.mixin.def">
+			<expression>(mixin\s+)([\w-]+)(?:(\()\s*((?:[a-zA-Z_]\w*\s*)(?:,\s*[a-zA-Z_]\w*\s*)*)(\)))?$</expression>
+			<capture number="1" name="pug.element.tag.framework" />
+			<capture number="2" name="pug.identifier.function" />
+			<capture number="4" name="pug.identifier.argument" />
+		</scope>
+
+		<scope name="pug.value.entity">
+			<expression>(&amp;)([a-zA-Z0-9]+|\#[0-9]+|\#x[0-9a-fA-F]+)(;)</expression>
 		</scope>
 	
 		<!-- classes and IDs -->
@@ -93,7 +110,7 @@
 		
 		<!-- Syntax -->
 		<scope name="pug.declaration">
-			<expression>^!!!.*$</expression>
+			<expression>^(!!!|doctype)(\s*[a-zA-Z0-9-_]+)?</expression>
 		</scope>
 		<scope name="pug.bracket">
 			<expression>[\(\[\{\)\]\}]</expression>
@@ -103,8 +120,13 @@
 		</scope>
 		
 		<!-- Comments -->
-		<scope name="pug.comment.single" spell-check="true">
-			<expression>^\s*\/\/.*$</expression>
+		<scope name="pug.comment.single">
+			<starts-with>
+				<expression>^(\s*)//-</expression>
+			</starts-with>
+			<ends-with>
+				<expression>^(?!(\1\s)|\s*$)</expression>
+			</ends-with>
 		</scope>
 	</scopes>
 
