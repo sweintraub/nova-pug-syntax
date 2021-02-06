@@ -61,7 +61,7 @@
 
 		<scope name="pug.evaluation">
 				<starts-with>
-						<expression>==?(?!>)</expression>
+						<expression>=(?!&gt;)</expression>
 				</starts-with>
 				<ends-with>
 						<expression>$</expression>
@@ -80,7 +80,7 @@
 		</scope>
 		
 		<scope name="pug.element">
-			<expression>^\s*(append|block|case|each|extends|for|if|else|include|each|until|while|unless|when|block|append|prepend)</expression>
+			<expression>^\s*(append|block|case|default|each|extends|for|if|else|include|each|until|while|unless|when|block|append|prepend)</expression>
 			<capture number="1" name="pug.element.tag.framework" />
 		</scope>
 
@@ -108,7 +108,7 @@
 	
 		<!-- classes and IDs -->
 		<scope name="pug.selectors">
-			<expression>(?:(\.[a-zA-Z0-9\-\_\:]+))|(?:(\#[a-zA-Z0-9\-\_]+))</expression>
+			<expression>((?&lt;![^.][a-zA-Z])\.[\w-]+)|(\#[\w-]+)</expression>
 			<capture number="1" name="pug.style.selector.identifier.class" />
 			<capture number="2" name="pug.style.selector.identifier.id" />
 		</scope>	
@@ -121,11 +121,11 @@
 			<expression>[\(\[\{\)\]\}]</expression>
 		</scope>
 		<scope name="pug.operator">
-			<expression>(\==?\>)</expression>
+			<expression>(\=\&gt;)</expression>
 		</scope>
 		
 		<!-- Comments -->
-		<scope name="pug.comment.single">
+		<scope name="pug.comment.single" spell-check="false">
 			<starts-with>
 				<expression>^(\s*)//-</expression>
 			</starts-with>
@@ -161,7 +161,3 @@
 	</indentation>
 		
 </syntax>
-
-
-<!-- ^\\s*(([\\w#.-]+(\\(.*?\\))?(:\\s*[\\w#.-]+(\\(.*?\\))?)*\\.?$)|(:[a-z]\\w*($|\\())|(\\/\\/-?$)|(-\\s+(if|else|while)(\\s+|$))|((for|if|else if|else|each|until|while|unless|case|when|block|append|prepend)(\\s+|$))) -->
-
