@@ -29,9 +29,6 @@
 			<expression>\\.*$</expression>
 		</scope>
 		<include syntax="self" collection="strings" />
-		<!-- <scope name="emblem.value.symbol">
-			<expression>[\+][A-Za-z][A-Za-z0-9_]*</expression>
-		</scope> -->
 
 		<scope name="pug.interpolation" >
 			<starts-with>
@@ -80,8 +77,33 @@
 		</scope>
 		
 		<scope name="pug.element">
-			<expression>^\s*(append|block|case|default|each|extends|for|if|else|include|each|until|while|unless|when|block|append|prepend)</expression>
-			<capture number="1" name="pug.element.tag.framework" />
+			<starts-with>
+				<expression>^\s*(append|block|case|default|each|extends|for|if|else|include|each|until|while|unless|when|block|append|prepend)</expression>
+				<capture number="1" name="pug.element.tag.framework" />
+			</starts-with>
+			<ends-with>
+				<expression>$</expression>
+			</ends-with>
+			<subsyntax name="javascript">
+				<cut-off>
+					<expression>$</expression>
+				</cut-off>
+			</subsyntax>
+		</scope>
+
+		<scope name="pug.meta">
+			<starts-with>
+			<expression>([^\s(),=\/]+)\s*=\s*</expression>
+			<capture number="1" name="pug.tag.attribute.name" />			
+			</starts-with>
+			<ends-with>
+				<expression>$</expression>
+			</ends-with>
+			<subsyntax name="javascript">
+			<cut-off>
+				<expression>$</expression>
+			</cut-off>
+			</subsyntax>
 		</scope>
 
 		<scope name="pug.mixin">
