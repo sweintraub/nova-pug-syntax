@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<syntax name="pug-jsx">
+	<meta>
+		<name>Pug JSX</name>
+		<type>script</type>
+		<preferred-file-extension>js</preferred-file-extension>
+		<parent>javascript</parent>
+	</meta>
+	
+	<detectors>
+		<match-content priority="1.0">pug\`</match-content>
+		<extension priority="0.7">js</extension>
+	</detectors>
+	
+	<scopes>
+		<include syntax="javascript" />
+	</scopes>
+	
+	<template-scopes>
+		<scope name="pug-jsx.template">
+			<starts-with>
+				<expression>pug\`</expression>
+			</starts-with>
+			<ends-with>
+				<expression>\`</expression>
+			</ends-with>
+			<subsyntax name="pug" />
+		</scope>
+	</template-scopes>
+</syntax>
